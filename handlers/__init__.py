@@ -1,10 +1,10 @@
 from loader import dp
 
 from . import basic
-# from . import admin
+from . import shop
 
 
 dp.include_routers(
-    basic.router, 
-    # admin.router
+    basic.router
+    ,shop.router
     )
