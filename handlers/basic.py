@@ -3,6 +3,7 @@ from aiogram.filters import Command
 
 
 from keyboards.main_kb import main_keyboard,main_back_keyboard
+from gtts import gTTS
 
 router = Router()
 
@@ -64,3 +65,14 @@ async def merch(call: types.CallbackQuery):
                                  "\n\nТому тепер у вас є можливість подарувати радість здобування нових навичок та професій вашій коханій людині, друзям або членам родини"
                                  "\n\nКнига це кращій подарунок, а курс у Комп'ютерній школі Hillel — найкорисніший ;) "
                                 , reply_markup=link_markup)
+    
+# @router.message()
+# async def voice_handler(message: types.Message):
+#     text = message.text
+#     language = "en"
+#     output_file="output.mp3"
+#     tts = gTTS(text, lang=language, slow=False)
+#     tts.save(output_file)
+#     voice = types.FSInputFile(output_file)
+#     await message.answer_voice(voice)
+    
