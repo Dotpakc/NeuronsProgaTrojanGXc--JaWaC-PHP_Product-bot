@@ -28,16 +28,22 @@ def decode_files_courses(files: list[str] ) -> list[dict]:
             )
     return files_courses
 
-def generate_courses_kb(all_courses):
+def search_course_by_slug(slug: str, all_courses: list[dict]) -> dict:
+    for course in all_courses:
+        if slugify(course['name']) == slug:
+            return course
+    return None
+
+def generate_courses_kb(all_courses,type='course_'):
     courses_kb = IB()
     for course in all_courses:
         courses_kb.row(
             types.InlineKeyboardButton(
                 text=course['name']
-                , callback_data=f"course_{slugify(course['name'])}"
+                , callback_data=f"{type}{slugify(course['name'])}"
                 )
             )
-        # print(course['name'])
+        # print(course['name'], f"{type}{course['name']}")
     courses_kb.row(main_back_keyboard_but)
     return courses_kb
 

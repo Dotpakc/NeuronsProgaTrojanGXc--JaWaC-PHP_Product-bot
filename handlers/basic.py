@@ -18,7 +18,11 @@ async def cmd_start(message: types.Message):
 
 @router.callback_query(F.data == 'main_back')
 async def main_back(call: types.CallbackQuery):
-    await call.message.edit_text("Обери пункт меню 👇🏻",reply_markup=main_keyboard.as_markup())
+    if call.message.photo:
+        await call.message.answer("Обери пункт меню 👇🏻",reply_markup=main_keyboard.as_markup())
+        await call.message.delete()
+    else:
+        await call.message.edit_text("Обери пункт меню 👇🏻",reply_markup=main_keyboard.as_markup())
 
 
     
